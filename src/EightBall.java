@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class EightBall {
@@ -6,15 +8,26 @@ public class EightBall {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Random random = new Random();
+		Scanner scan =new Scanner(System.in);
 		 Context context = new Context();
 		 TempState temp = TempState.getInstance();
 		 int[]controle = new int[10] ;
 	     
 		
-		 for(int i = 0; i< 10;i++){
+		for(int i = 0; i< 10;i++){
+			System.out.println("geef je vraag in");
+			 String question;
+			 question = scan.nextLine();
+			 
 		int answer = random.nextInt(20);
+		if(Arrays.asList(controle).contains(answer)){
 			
-	
+			answer = random.nextInt(20);
+		}
+		else{	
+			
+		
+		System.out.println(question);
 		 switch (answer){
 		 case 0:  temp.setState(new Again()); context.setState(temp.getState());controle[i] = 0; break;
 		 case 1:  temp.setState(new Bet()); context.setState(temp.getState());controle[i] = 1; break;
@@ -40,8 +53,9 @@ public class EightBall {
 		 }
 		 context.getState().Answer(context);
 		 }
-		
-		 
+		}
+	
+	
 	}
 
 }
